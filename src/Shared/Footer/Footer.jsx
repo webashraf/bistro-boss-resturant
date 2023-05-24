@@ -3,8 +3,8 @@ import React from "react";
 const Footer = () => {
   return (
     <>
-      <footer className="footer p-10 bg-neutral text-neutral-content">
-        <div>
+      <footer className="flex bg-neutral text-neutral-content">
+        <div className="w-full p-10 bg-slate-500">
           <svg
             width="50"
             height="50"
@@ -22,9 +22,9 @@ const Footer = () => {
             Providing reliable tech since 1992
           </p>
         </div>
-        <div>
+        <div className="w-full p-10 bg-slate-800">
           <span className="footer-title">Social</span>
-          <div className="grid grid-flow-col gap-4">
+          <div className="flex gap-3">
             <a>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +61,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-      <footer className="footer footer-center p-4 bg-neutral text-base-content">
+      <footer className="footer footer-center p-4 bg-neutral text-slate-900 text-white">
         <div>
           <p>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
         </div>
