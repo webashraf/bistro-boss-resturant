@@ -10,6 +10,9 @@ const Navbar = () => {
       <Link to={"/ourmenu"}>
       Our Menu
       </Link>
+      <Link to={"/ourshop"}>
+      Our Shop
+      </Link>
     </>
   );
   return (
