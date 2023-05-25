@@ -2,7 +2,7 @@ import React from 'react';
 
 const DropImageBox = ({menu}) => {
     return (
-        <div className='grid grid-cols-3 ml-0'>
+        <div className='grid grid-cols-3 ml-0 py-3'>
             <div className='w-[200px]'>
                 <img style={{borderRadius: "0 200px 200px 200px"}} className='w-[150px] h-[100px] object-cover mr-auto' src={menu.image} alt="" />
             </div>

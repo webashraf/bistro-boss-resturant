@@ -1,0 +1,12 @@
+.react-parallax-content {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.react-parallax-bgimage {
+	object-fit: cover;
+}
+.p-36 {
+	padding: 9rem;
+	width: 1191px;
+}

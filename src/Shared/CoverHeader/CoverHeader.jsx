@@ -1,4 +1,5 @@
 import { Parallax } from "react-parallax";
+import "./CoverHeader.css"
 const CoverHeader = ({ heading, description, img }) => {
   return (
     <Parallax
@@ -8,7 +9,7 @@ const CoverHeader = ({ heading, description, img }) => {
       strength={-200}
     >
       <div
-        className={` p-36 bg-cover bg-center bg-no-repeat h-[200px]`}
+        className={` p-36`}
       >
         <div className={`p-20 bg-[#0000008e] text-center text-white uppercase`}>
           <h1 className="text-5xl mb-2">{heading}</h1>
