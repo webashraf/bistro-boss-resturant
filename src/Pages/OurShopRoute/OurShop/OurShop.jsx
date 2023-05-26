@@ -8,10 +8,11 @@ import useMenu from '../../../hooks/useMenu';
 import { useParams } from 'react-router-dom';
 // =======
 import OrderTab from '../OrderTab/OrderTab';
+import { Helmet } from 'react-helmet';
 // >>>>>>> 924d626787fa24450a3c92173d935eee250f60bc
 
 const OurShop = () => {
-    const categories = [salads, pizzas, soups, desserts, drinks];
+    const categories = ["salads", "pizzas", "soups", 'desserts', "drinks"];
     const {category} = useParams();
     const initialCategoryIndex = categories.indexOf(category);
     const [tabIndex, setTabIndex] = useState(initialCategoryIndex);
@@ -25,6 +26,9 @@ const OurShop = () => {
 
     return (
         <>
+        <Helmet>
+            <title>BISTRO BOSS | SHOP</title>
+        </Helmet>
             <CoverHeader heading={"OUR SHOP"} description={"Whould you like to try a dish?"} img={cover}></CoverHeader>
 
             <div className='py-10'>

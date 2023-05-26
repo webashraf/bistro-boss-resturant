@@ -4,6 +4,7 @@ import cover2 from "../../../assets/Cover/chef-service.jpg";
 import DropImageBox from "../../../Shared/DropImageBox/DropImageBox";
 import useMenu from "../../../hooks/useMenu";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const OurMenu = () => {
   const [menus] = useMenu();
@@ -15,6 +16,9 @@ const OurMenu = () => {
   console.log(offers);
   return (
     <div>
+      <Helmet>
+        <title>BISTRO BOSS | MENU</title>
+      </Helmet>
       <CoverHeader
         img={cover1}
         heading={"OUR MENU"}
