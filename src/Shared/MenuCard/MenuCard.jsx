@@ -5,7 +5,9 @@ const MenuCard = ({ menu }) => {
         <div>
             {menu.length}
             <div className="card card-compact w-96 bg-base-100 shadow-xl">
-                <figure><img src={menu.image} alt="Shoes" /></figure>
+                <figure className='relative'><img src={menu.image} alt="Shoes" />
+                <p className='bg-black text-white rounded-lg px-2 py-1 absolute right-3 top-3'>${menu.price}</p>
+                </figure>
                 <div className="card-body">
                     <h2 className="card-title">{menu.name}</h2>
                     <p>{menu.recipe}</p>

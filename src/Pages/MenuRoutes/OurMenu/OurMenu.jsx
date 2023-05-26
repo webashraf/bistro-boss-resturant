@@ -3,6 +3,7 @@ import cover1 from "../../../assets/Cover/banner3.jpg";
 import cover2 from "../../../assets/Cover/chef-service.jpg";
 import DropImageBox from "../../../Shared/DropImageBox/DropImageBox";
 import useMenu from "../../../hooks/useMenu";
+import { Link } from "react-router-dom";
 
 const OurMenu = () => {
   const [menus] = useMenu();
@@ -10,8 +11,8 @@ const OurMenu = () => {
   const pizzas = menus.filter((item) => item.category === "pizza");
   const salads = menus.filter((item) => item.category === "salad");
   const soups = menus.filter((item) => item.category === "soup");
-  const offereds = menus.filter((item) => item.category === "offered");
-  console.log(offereds);
+  const offers = menus.filter((item) => item.category === "offered");
+  console.log(offers);
   return (
     <div>
       <CoverHeader
@@ -21,13 +22,13 @@ const OurMenu = () => {
       ></CoverHeader>
       <div className="py-10 text-center">
         <div className="grid grid-cols-2 gap-4">
-          {offereds.map((item) => (
+          {offers.map((item) => (
             <DropImageBox key={item._id} menu={item}></DropImageBox>
           ))}
         </div>
-        <button className="btn btn-outline border-0 border-b-4 border-b-black">
+        <Link to={`/ourshop/offers`} className="btn btn-outline border-0 border-b-4 border-b-black">
           Order Our Favourite Food
-        </button>
+        </Link>
       </div>
 
       <CoverHeader
@@ -41,9 +42,9 @@ const OurMenu = () => {
             <DropImageBox key={item._id} menu={item}></DropImageBox>
           ))}
         </div>
-        <button className="btn btn-outline border-0 border-b-4 border-b-black">
+        <Link to={`/ourshop/desserts`} className="btn btn-outline border-0 border-b-4 border-b-black">
           Order Our Favourite Food
-        </button>
+        </Link>
       </div>
 
       <CoverHeader
@@ -57,9 +58,9 @@ const OurMenu = () => {
             <DropImageBox key={item._id} menu={item}></DropImageBox>
           ))}
         </div>
-        <button className="btn btn-outline border-0 border-b-4 border-b-black">
+        <Link to={`/ourshop/pizzas`} className="btn btn-outline border-0 border-b-4 border-b-black">
           Order Our Favourite Food
-        </button>
+        </Link>
       </div>
 
       <CoverHeader
@@ -73,9 +74,9 @@ const OurMenu = () => {
             <DropImageBox key={item._id} menu={item}></DropImageBox>
           ))}
         </div>
-        <button className="btn btn-outline border-0 border-b-4 border-b-black">
+        <Link to={`/ourshop/salads`} className="btn btn-outline border-0 border-b-4 border-b-black">
           Order Our Favourite Food
-        </button>
+        </Link>
       </div>
 
       <CoverHeader
@@ -89,9 +90,9 @@ const OurMenu = () => {
             <DropImageBox key={item._id} menu={item}></DropImageBox>
           ))}
         </div>
-        <button className="btn btn-outline border-0 border-b-4 border-b-black">
+        <Link to={`/ourshop/soups`} className="btn btn-outline border-0 border-b-4 border-b-black">
           Order Our Favourite Food
-        </button>
+        </Link>
       </div>
     </div>
   );
