@@ -11,9 +11,11 @@ import OrderTab from '../OrderTab/OrderTab';
 // >>>>>>> 924d626787fa24450a3c92173d935eee250f60bc
 
 const OurShop = () => {
-    const [tabIndex, setTabIndex] = useState(0);
-    const [menus] = useMenu();
+    const categories = [salads, pizzas, soups, desserts, drinks];
     const {category} = useParams();
+    const initialCategoryIndex = categories.indexOf(category);
+    const [tabIndex, setTabIndex] = useState(initialCategoryIndex);
+    const [menus] = useMenu();
     console.log(category);
     const desserts = menus.filter((item) => item.category === "dessert");
     const pizzas = menus.filter((item) => item.category === "pizza");
