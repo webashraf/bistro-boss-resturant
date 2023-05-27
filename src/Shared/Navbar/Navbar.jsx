@@ -13,6 +13,9 @@ const Navbar = () => {
       <Link to={"/ourshop/salads"}>
       Our Shop
       </Link>
+      <Link to={"/login"}>
+      Login
+      </Link>
     </>
   );
   return (
