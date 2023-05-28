@@ -4,7 +4,7 @@ import Footer from "../Shared/Footer/Footer";
 
 const Main = () => {
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   const isLogin = location.pathname.includes('/login');
   // console.log(isLogin);
   return (

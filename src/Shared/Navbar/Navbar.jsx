@@ -3,21 +3,21 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../authProvider/AuthProvider";
 
 const Navbar = () => {
-  const {user} = useContext(AuthContext)
+  const { user, logOut } = useContext(AuthContext);
   const navMenu = (
     <>
-      <Link to={"/"}>
-      Home
-      </Link>
-      <Link to={"/ourmenu"}>
-      Our Menu
-      </Link>
-      <Link to={"/ourshop/salads"}>
-      Our Shop
-      </Link>
-
+      <Link to={"/"}>Home</Link>
+      <Link to={"/ourmenu"}>Our Menu</Link>
+      <Link to={"/ourshop/salads"}>Our Shop</Link>
     </>
   );
+  console.log(user);
+  const signOut = () => {
+    console.log("Log Out", user);
+    logOut()
+    .then((result) => console.log(result))
+    .catch((error) => console.log(error))
+  };
   return (
     <div className="">
       <div className="navbar bg-[#000000a2] fixed z-10 max-w-screen-xl mx-auto">
@@ -46,16 +46,25 @@ const Navbar = () => {
               {navMenu}
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-xl text-white">daisyUI</a>
+          <a className="btn btn-ghost normal-case text-xl text-white">
+            daisyUI
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 text-white space-x-2">{navMenu}</ul>
+          <ul className="menu menu-horizontal px-1 text-white space-x-2">
+            {navMenu}
+          </ul>
         </div>
         <div className="navbar-end">
-        <Link className="btn btn-primary" to={"/login"}>
-      Login
-      </Link>
-      <button className="btn btn-warning text-white">Log OUt</button>
+          {!user ? (
+            <Link className="btn btn-primary" to={"/login"}>
+              Login
+            </Link>
+          ) : (
+            <button onClick={signOut} className="btn btn-warning text-white">
+              Log OUt
+            </button>
+          )}
         </div>
       </div>
     </div>

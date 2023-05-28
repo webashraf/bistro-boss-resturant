@@ -1,12 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   LoadCanvasTemplate,
   loadCaptchaEnginge,
   validateCaptcha,
 } from "react-simple-captcha";
+import { AuthContext } from "../../authProvider/AuthProvider";
 
 const SignUp = () => {
+  const { createUserEmailAndPass, updateUserProfile } = useContext(AuthContext);
+
   const captchaRef = useRef(null);
   const [loginBtn, setLoginBtn] = useState(true);
 
@@ -15,7 +18,18 @@ const SignUp = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+    createUserEmailAndPass(data.email, data.password)
+      .then((result) => {
+        console.log(result);
+
+        updateUserProfile(data.name, data.photo_url)
+        .then(result => console.log(result))
+        .catch(error => console.log(error))
+      })
+      .catch((error) => console.log(error));
+  };
 
   useEffect(() => {
     loadCaptchaEnginge(4);
@@ -36,7 +50,7 @@ const SignUp = () => {
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row">
         <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Login now!</h1>
+          <h1 className="text-5xl font-bold">Register now!</h1>
           <p className="py-6">
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
@@ -60,6 +74,36 @@ const SignUp = () => {
                 <span className="text-warning">Field is required!!</span>
               )}
             </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                type="text"
+                {...register("name", { required: true })}
+                name="name"
+                placeholder="Name"
+                className="input input-bordered"
+              />
+              {errors.name && (
+                <span className="text-warning">Field is required!!</span>
+              )}
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Photo Url</span>
+              </label>
+              <input
+                type="text"
+                {...register("photo_url", { required: true })}
+                name="photo_url"
+                placeholder="Photo Url"
+                className="input input-bordered"
+              />
+              {errors.photo_url && (
+                <span className="text-warning">Field is required!!</span>
+              )}
+            </div>
 
             <div className="form-control">
               <label className="label">
@@ -76,9 +120,15 @@ const SignUp = () => {
                 placeholder="password"
                 className="input input-bordered"
               />
-               {errors.password?.type === 'required' && <p className="text-warning">Password is required</p>}
-               {errors.password?.type === 'minLength' && <p className="text-warning">Password is Sort</p>}
-               {errors.password?.type === 'maxLength' && <p className="text-warning">Password is Long</p>}
+              {errors.password?.type === "required" && (
+                <p className="text-warning">Password is required</p>
+              )}
+              {errors.password?.type === "minLength" && (
+                <p className="text-warning">Password is Sort</p>
+              )}
+              {errors.password?.type === "maxLength" && (
+                <p className="text-warning">Password is Long</p>
+              )}
               <label className="label">
                 <a href="#" className="label-text-alt link link-hover">
                   Forgot password?

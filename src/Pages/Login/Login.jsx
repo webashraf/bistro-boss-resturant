@@ -7,7 +7,7 @@ import {
 import { AuthContext } from "../../authProvider/AuthProvider";
 import { Link } from "react-router-dom";
 const Login = () => {
-  const { createUserEmailAndPass, createUserWithGoogle } =
+  const { loginWithEmailPass, createUserWithGoogle } =
     useContext(AuthContext);
   const captchaRef = useRef(null);
   const [loginBtn, setLoginBtn] = useState(true);
@@ -18,7 +18,7 @@ const Login = () => {
     const password = form.password.value;
     console.log(email, password);
 
-    createUserEmailAndPass(email, password)
+    loginWithEmailPass(email, password)
       .then((result) => console.log(result))
       .catch((error) => console.log(error));
   };
