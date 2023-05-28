@@ -1,27 +1,22 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
 import {
-  loadCaptchaEnginge,
   LoadCanvasTemplate,
+  loadCaptchaEnginge,
   validateCaptcha,
 } from "react-simple-captcha";
-import { AuthContext } from "../../authProvider/AuthProvider";
-import { Link } from "react-router-dom";
-const Login = () => {
-  const { createUserEmailAndPass, createUserWithGoogle } =
-    useContext(AuthContext);
+
+const SignUp = () => {
   const captchaRef = useRef(null);
   const [loginBtn, setLoginBtn] = useState(true);
-  const handelForm = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
-    console.log(email, password);
 
-    createUserEmailAndPass(email, password)
-      .then((result) => console.log(result))
-      .catch((error) => console.log(error));
-  };
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
+
   useEffect(() => {
     loadCaptchaEnginge(4);
   }, []);
@@ -37,12 +32,6 @@ const Login = () => {
     }
     console.log(loginBtn);
   };
-  const signUpWithGoogle = () => {
-    createUserWithGoogle()
-      .then((result) => console.log(result))
-      .catch((error) => console.log(error));
-  };
-
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row">
@@ -55,17 +44,21 @@ const Login = () => {
           </p>
         </div>
         <div className="card flex-shrink-0 w-full max-w-lg shadow-2xl bg-base-100">
-          <form onSubmit={handelForm} className="card-body">
+          <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
               <input
                 type="email"
+                {...register("email", { required: true })}
                 name="email"
                 placeholder="email"
                 className="input input-bordered"
               />
+              {errors.email && (
+                <span className="text-warning">Field is required!!</span>
+              )}
             </div>
 
             <div className="form-control">
@@ -74,10 +67,18 @@ const Login = () => {
               </label>
               <input
                 type="password"
+                {...register("password", {
+                  required: true,
+                  minLength: 6,
+                  maxLength: 10,
+                })}
                 name="password"
                 placeholder="password"
                 className="input input-bordered"
               />
+               {errors.password?.type === 'required' && <p className="text-warning">Password is required</p>}
+               {errors.password?.type === 'minLength' && <p className="text-warning">Password is Sort</p>}
+               {errors.password?.type === 'maxLength' && <p className="text-warning">Password is Long</p>}
               <label className="label">
                 <a href="#" className="label-text-alt link link-hover">
                   Forgot password?
@@ -105,17 +106,14 @@ const Login = () => {
 
             <div className="form-control mt-6">
               <input
-                disabled={loginBtn}
+                //   disabled={loginBtn}
                 type="submit"
                 className="btn btn-primary"
-                value="Login"
+                value="Submit"
               />
-              <p>New here to <Link to={"/signup"}>Register Now</Link></p>
             </div>
             <div className="form-control mt-6">
-              <button onClick={signUpWithGoogle} className="btn">
-                Google
-              </button>
+              <button className="btn">Google</button>
             </div>
           </form>
         </div>
@@ -124,4 +122,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;

@@ -1,9 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home/Home";
+import Login from "../Pages/Login/Login";
 import DesertsMenu from "../Pages/MenuRoutes/OurMenu/OurMenu";
 import OurShop from "../Pages/OurShopRoute/OurShop/OurShop";
-import Login from "../Pages/Login/Login";
+import SignUp from "../Pages/SignUp/SignUp";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
       },
       {
         path: "ourmenu",
-        element: <DesertsMenu></DesertsMenu>
+        element: <DesertsMenu></DesertsMenu>,
       },
       {
         path: "/ourshop/:category",
@@ -25,6 +26,9 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login></Login>,
+      },{
+        path: "signup",
+        element: <SignUp></SignUp>
       }
     ],
   },
