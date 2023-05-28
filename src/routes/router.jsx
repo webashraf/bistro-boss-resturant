@@ -5,6 +5,7 @@ import Login from "../Pages/Login/Login";
 import DesertsMenu from "../Pages/MenuRoutes/OurMenu/OurMenu";
 import OurShop from "../Pages/OurShopRoute/OurShop/OurShop";
 import SignUp from "../Pages/SignUp/SignUp";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
       },
       {
         path: "ourmenu",
-        element: <DesertsMenu></DesertsMenu>,
+        element: <PrivateRoute><DesertsMenu></DesertsMenu></PrivateRoute>,
       },
       {
         path: "/ourshop/:category",

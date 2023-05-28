@@ -1,16 +1,26 @@
 import { useContext, useEffect, useRef, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
-  loadCaptchaEnginge,
   LoadCanvasTemplate,
+  loadCaptchaEnginge,
   validateCaptcha,
 } from "react-simple-captcha";
 import { AuthContext } from "../../authProvider/AuthProvider";
-import { Link } from "react-router-dom";
+
+
+
 const Login = () => {
-  const { loginWithEmailPass, createUserWithGoogle } =
-    useContext(AuthContext);
+  const { loginWithEmailPass, createUserWithGoogle, user } = useContext(AuthContext);
   const captchaRef = useRef(null);
   const [loginBtn, setLoginBtn] = useState(true);
+  const location = useLocation();
+  console.log(location);
+  const from = location?.state?.from?.pathname || "/"
+  const navigate = useNavigate();
+
+
+
+
   const handelForm = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -42,6 +52,10 @@ const Login = () => {
       .then((result) => console.log(result))
       .catch((error) => console.log(error));
   };
+  useEffect(()=> {
+    user && navigate(from)
+
+  }, [user])
 
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -110,7 +124,9 @@ const Login = () => {
                 className="btn btn-primary"
                 value="Login"
               />
-              <p>New here to <Link to={"/signup"}>Register Now</Link></p>
+              <p>
+                New here to <Link to={"/signup"}>Register Now</Link>
+              </p>
             </div>
             <div className="form-control mt-6">
               <button onClick={signUpWithGoogle} className="btn">
