@@ -1,21 +1,33 @@
-import React from 'react';
-
+import { useContext } from 'react';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 const MenuCard = ({ menu }) => {
-    const handleAddToCart = (id) =>{
-        console.log("add to cart", id);
+    const {user} = useContext(AuthContext) || {};
+    const {name, price, image, category, recipe, _id} = menu;
+    const handleAddToCart = (items) =>{
+        const orderItems = {itemId: _id, name, price, image, category};
+        console.log("add to cart", orderItems);
+        if (user) {
+            fetch(`http://localhost:5000/carts`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(orderItems)
+            })
+            .then(res => res.json())
+            .then(data => console.log(data))
+        }
+        
     }
     return (
         <div>
-            {menu.length}
             <div className="card card-compact w-96 bg-base-100 shadow-xl">
-                <figure className='relative'><img src={menu.image} alt="Shoes" />
-                <p className='bg-black text-white rounded-lg px-2 py-1 absolute right-3 top-3'>${menu.price}</p>
+                <figure className='relative'><img src={image} alt="Shoes" />
+                <p className='bg-black text-white rounded-lg px-2 py-1 absolute right-3 top-3'>${price}</p>
                 </figure>
-                <div className="card-body">
-                    <h2 className="card-title">{menu.name}</h2>
-                    <p>{menu.recipe}</p>
+                <div className="card-b`ody">
+                    <h2 className="card-title">{name}</h2>
+                    <p>{recipe}</p>
                     <div className="card-actions justify-end">
-                        <button onClick={() => handleAddToCart(menu._id)} className="btn btn-primary">Add to cart</button>
+                        <button onClick={() => handleAddToCart(menu)} className="btn btn-primary">Add to cart</button>
                     </div>
                 </div>
             </div>

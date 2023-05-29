@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import MenuCard from '../../../Shared/MenuCard/MenuCard';
+import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 const OrderTab = ({items}) => {
     return (
         <div className="grid grid-cols-3 space-y-3 gap-4">
         {items.map((menu) => (
-            <MenuCard key={menu._id} menu={menu}></MenuCard>
+            <MenuCard key={menu._id} menu={menu} ></MenuCard>
         ))}
     </div>
     );
