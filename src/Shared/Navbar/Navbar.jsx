@@ -1,29 +1,33 @@
 import { useContext } from "react";
+import { RiShoppingCartFill } from 'react-icons/ri';
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import useCart from "../../hooks/useCart";
 
 const Navbar = () => {
-  const { user, logOut}  = useContext(AuthContext);
-  console.log(user);
-
-
-
+  const { user, logOut } = useContext(AuthContext);
+  // console.log(user);
+  const [cart] = useCart()
 
   const navMenu = (
     <>
       <Link to={"/"}>Home</Link>
       <Link to={"/ourmenu"}>Our Menu</Link>
       <Link to={"/ourshop/salads"}>Our Shop</Link>
+      <Link to={"/cart"} className="flex gap-2">
+        <RiShoppingCartFill></RiShoppingCartFill>
+        
+        <div className="badge badge-secondary">{cart?.length}</div>
+      </Link>
     </>
   );
   // console.log(user);
   const signOut = () => {
     // console.log("Log Out", user);
     logOut()
-    .then((result) => console.log(result))
-    .catch((error) => console.log(error))
+      .then((result) => console.log(result))
+      .catch((error) => console.log(error));
   };
-
 
   return (
     <div className="">
@@ -48,7 +52,7 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 text-white space-y-2"
+              className="menu menu-compact dropdown-content bg-[#101010] mt-3 p-2 shadow rounded-box w-52 text-white space-y-2"
             >
               {navMenu}
             </ul>

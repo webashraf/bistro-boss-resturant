@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import useCart from '../../hooks/useCart';
 
 
 
@@ -8,14 +9,14 @@ import { AuthContext } from '../../AuthProvider/AuthProvider';
 const MenuCard = ({ menu, loading }) => {
     const {user} = useContext(AuthContext);
     const {name, price, image, category, recipe, _id} = menu;
-    console.log(user);
-
+    // console.log(user);
+    const [, refetch] = useCart();
 
 
     const handleAddToCart = (items) =>{
 
 
-        const orderItems = {itemId: _id, name, price, image, category};
+        const orderItems = {itemId: _id, name, price, image, category, email: user?.email};
         console.log(user);
         if (user) {
             console.log("add to cart", orderItems);
@@ -25,7 +26,13 @@ const MenuCard = ({ menu, loading }) => {
                 body: JSON.stringify(orderItems)
             })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+                if (data.insertedId) {
+                    console.log(data);
+                    refetch(); //TranStack function for refactching data //
+
+                }
+            })
         }
         
     }
