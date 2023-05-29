@@ -1,12 +1,24 @@
 import { useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
-const MenuCard = ({ menu }) => {
-    const {user} = useContext(AuthContext) || {};
+
+
+
+
+
+const MenuCard = ({ menu, loading }) => {
+    const {user} = useContext(AuthContext);
     const {name, price, image, category, recipe, _id} = menu;
+    console.log(user);
+
+
+
     const handleAddToCart = (items) =>{
+
+
         const orderItems = {itemId: _id, name, price, image, category};
-        console.log("add to cart", orderItems);
+        console.log(user);
         if (user) {
+            console.log("add to cart", orderItems);
             fetch(`http://localhost:5000/carts`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -17,6 +29,9 @@ const MenuCard = ({ menu }) => {
         }
         
     }
+
+
+
     return (
         <div>
             <div className="card card-compact w-96 bg-base-100 shadow-xl">
