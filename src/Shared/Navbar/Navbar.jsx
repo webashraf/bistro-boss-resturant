@@ -1,9 +1,14 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../authProvider/AuthProvider";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut}  = useContext(AuthContext);
+  console.log(user);
+
+
+
+
   const navMenu = (
     <>
       <Link to={"/"}>Home</Link>
@@ -18,6 +23,8 @@ const Navbar = () => {
     .then((result) => console.log(result))
     .catch((error) => console.log(error))
   };
+
+
   return (
     <div className="">
       <div className="navbar bg-[#000000a2] fixed z-10 max-w-screen-xl mx-auto">
