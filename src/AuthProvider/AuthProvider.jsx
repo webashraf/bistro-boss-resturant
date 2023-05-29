@@ -11,21 +11,25 @@ const AuthProvider = ({ children }) => {
 
   // Create user with email and password //
   const createUserEmailAndPass = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   // Create user with google //
   const createUserWithGoogle = (email, password) => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
   // Login user with email and password //
   const loginWithEmailPass = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   }
 
   // Update user profile //
   const updateUserProfile = (name, photo) => {
+    setLoading(true);
     return updateProfile(auth.currentUser, {
       displayName: name, photoURL: photo
     });
