@@ -11,9 +11,9 @@ const Navbar = () => {
       <Link to={"/ourshop/salads"}>Our Shop</Link>
     </>
   );
-  console.log(user);
+  // console.log(user);
   const signOut = () => {
-    console.log("Log Out", user);
+    // console.log("Log Out", user);
     logOut()
     .then((result) => console.log(result))
     .catch((error) => console.log(error))

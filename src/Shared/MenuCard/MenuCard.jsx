@@ -1,6 +1,9 @@
 import React from 'react';
 
 const MenuCard = ({ menu }) => {
+    const handleAddToCart = (id) =>{
+        console.log("add to cart", id);
+    }
     return (
         <div>
             {menu.length}
@@ -12,7 +15,7 @@ const MenuCard = ({ menu }) => {
                     <h2 className="card-title">{menu.name}</h2>
                     <p>{menu.recipe}</p>
                     <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Add to cart</button>
+                        <button onClick={() => handleAddToCart(menu._id)} className="btn btn-primary">Add to cart</button>
                     </div>
                 </div>
             </div>

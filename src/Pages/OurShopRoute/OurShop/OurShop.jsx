@@ -17,7 +17,7 @@ const OurShop = () => {
     const initialCategoryIndex = categories.indexOf(category);
     const [tabIndex, setTabIndex] = useState(initialCategoryIndex);
     const [menus] = useMenu();
-    console.log(category);
+    // console.log(category);
     const desserts = menus.filter((item) => item.category === "dessert");
     const pizzas = menus.filter((item) => item.category === "pizza");
     const salads = menus.filter((item) => item.category === "salad");
