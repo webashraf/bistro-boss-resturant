@@ -49,7 +49,7 @@ const Mycart = () => {
                                     ${cartItem.price}
                                 </td>
                                 <td>
-                                    <button className="btn btn-ghost btn-xs">
+                                    <button className="btn btn-red-600 btn-lg">
                                         <FaTrashAlt></FaTrashAlt>
                                     </button>
                                 </td>

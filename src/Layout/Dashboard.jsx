@@ -7,13 +7,13 @@ const Dashboard = () => {
   
 
   return (
-    <div className="drawer drawer-mobile">
+    <div className="drawer drawer-mobile w-full">
        <Helmet>
          <meta charSet="utf-8" />
         <title>BISTRO BOSS | Dashboard</title>
       </Helmet>
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle " />
-      <div className="drawer-content flex flex-col items-center justify-center">
+      <div className="drawer-content">
         {/* <!-- Page content here --> */}
         {/* <h1 className="text-7xl">Cart</h1> */}
         <Outlet></Outlet>
