@@ -13,7 +13,7 @@ const Dashboard = () => {
         <title>BISTRO BOSS | Dashboard</title>
       </Helmet>
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle " />
-      <div className="drawer-content">
+      <div className="drawer-content px-10">
         {/* <!-- Page content here --> */}
         {/* <h1 className="text-7xl">Cart</h1> */}
         <Outlet></Outlet>

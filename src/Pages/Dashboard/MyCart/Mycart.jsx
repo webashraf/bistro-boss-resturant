@@ -44,22 +44,21 @@ const Mycart = () => {
       </Helmet>
       <div className="text-center">
         <h1 className="text-6xl py-10">My Cart Page</h1>
-        <div className="flex justify-evenly bg-cyan-200 py-6 rounded-md">
+        <div className="flex justify-between px-4 border-4 border-cyan-900 py-6 rounded-md items-center">
           <span className="text-4xl">Total Item : {cart?.length}</span>
           <span className="text-4xl">Total Price : {total}</span>
           <button className="btn bg-cyan-900">Pay</button>
         </div>
       </div>
-      <div className="overflow-y-auto w-full">
+      <div className="overflow-y-auto w-full border-4 border-cyan-900 rounded-md">
         <table className="table w-full">
           {/* head */}
-          <thead>
+          <thead className="bg-cyan-900 text-white">
             <tr>
               <th>#</th>
               <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
-              <th></th>
+              <th className="text-end">Price</th>
+              <th className="text-end">Action</th>
             </tr>
           </thead>
           <tbody className="">
@@ -82,7 +81,7 @@ const Mycart = () => {
                   </div>
                 </td>
                 <td className="text-end">${cartItem.price}</td>
-                <td>
+                <td className="flex justify-end">
                   <button
                     onClick={() => handleDeleteItem(cartItem)}
                     className="btn btn-red-600 btn-lg"
