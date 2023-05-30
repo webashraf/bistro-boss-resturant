@@ -1,12 +1,57 @@
 import { Helmet } from "react-helmet";
 import { FaTrashAlt } from 'react-icons/fa';
 import useCart from "../../../hooks/useCart";
+import Swal from "sweetalert2";
 
 
 
 
 const Mycart = () => {
-    const [cart] = useCart()
+    const [cart, refetch] = useCart()
+
+
+    const handleDeleteItem = id => {
+        console.log(id);
+        
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+            console.log(id);
+
+                fetch(`http://localhost:5000/cart/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        refetch();
+ 
+                    })
+            }
+        })
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
     return (
         <div>
             <Helmet>
@@ -49,7 +94,7 @@ const Mycart = () => {
                                     ${cartItem.price}
                                 </td>
                                 <td>
-                                    <button className="btn btn-red-600 btn-lg">
+                                    <button onClick={() => handleDeleteItem(cartItem._id)} className="btn btn-red-600 btn-lg">
                                         <FaTrashAlt></FaTrashAlt>
                                     </button>
                                 </td>
