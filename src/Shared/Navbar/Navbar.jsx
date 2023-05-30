@@ -14,11 +14,12 @@ const Navbar = () => {
       <Link to={"/"}>Home</Link>
       <Link to={"/ourmenu"}>Our Menu</Link>
       <Link to={"/ourshop/salads"}>Our Shop</Link>
-      <Link to={"/cart"} className="flex gap-2">
+      <Link to={"/dashboard/mycart"} className="flex gap-2">
         <RiShoppingCartFill></RiShoppingCartFill>
         
         <div className="badge badge-secondary">{cart?.length}</div>
       </Link>
+      <Link to={"/dashboard"}>Dashboard</Link>
     </>
   );
   // console.log(user);

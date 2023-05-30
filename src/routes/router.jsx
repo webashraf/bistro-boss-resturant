@@ -6,6 +6,8 @@ import DesertsMenu from "../Pages/MenuRoutes/OurMenu/OurMenu";
 import OurShop from "../Pages/OurShopRoute/OurShop/OurShop";
 import SignUp from "../Pages/SignUp/SignUp";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Dashboard from './../Layout/Dashboard';
+import Mycart from "../Pages/Dashboard/MyCart/Mycart";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +35,16 @@ const router = createBrowserRouter([
       }
     ],
   },
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: "mycart",
+        element: <Mycart></Mycart>
+      }
+    ]
+  }
 ]);
 
 export default router;
