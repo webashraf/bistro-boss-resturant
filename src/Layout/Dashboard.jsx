@@ -1,9 +1,17 @@
-import { Link, Outlet } from "react-router-dom";
-import { RiCalendar2Fill, RiCalendarCheckLine, RiHome2Fill, RiHome2Line, RiMailCloseFill, RiMailFill, RiMenu2Fill, RiShoppingBag2Fill, RiShoppingCartFill, RiStarFill, RiWallet2Fill } from 'react-icons/ri';
+import { Helmet } from "react-helmet";
+import { RiCalendar2Fill, RiCalendarCheckLine, RiHome2Fill, RiHome2Line, RiMailFill, RiMenu2Fill, RiShoppingBag2Fill, RiShoppingCartFill, RiStarFill, RiWallet2Fill } from 'react-icons/ri';
+import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
+  
+  
+
   return (
     <div className="drawer drawer-mobile">
+       <Helmet>
+         <meta charSet="utf-8" />
+        <title>BISTRO BOSS | Dashboard</title>
+      </Helmet>
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle " />
       <div className="drawer-content flex flex-col items-center justify-center">
         {/* <!-- Page content here --> */}
@@ -12,7 +20,7 @@ const Dashboard = () => {
         <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
 
       </div>
-      <div className="drawer-side bg-red-600">
+      <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-4 w-80 bg-cyan-500 text-base-content text-white space-y-3">
           {/* <!-- Sidebar content here --> */}
@@ -20,30 +28,30 @@ const Dashboard = () => {
             <h2 className="text-5xl">Bistro Boss</h2>
             <p className="tracking-[1rem]">resturant</p>
           </div>
-          <Link to={"/home"} className="flex items-center gap-2 text-lg font-bold"><RiHome2Line></RiHome2Line>Home</Link>
+          <NavLink to={"/dashboard/home"} className="flex items-center gap-2 text-lg font-bold"><RiHome2Line></RiHome2Line>Home</NavLink>
 
-          <Link to={"/reservation"} className="flex items-center gap-2 text-lg font-bold"><RiCalendar2Fill></RiCalendar2Fill>Reservation</Link>
+          <NavLink to={"/dashboard/reservation"} className="flex items-center gap-2 text-lg font-bold"><RiCalendar2Fill></RiCalendar2Fill>Reservation</NavLink>
 
-          <Link to={"/paymenthistory"} className="flex items-center gap-2 text-lg font-bold"><RiWallet2Fill></RiWallet2Fill> Payment History</Link>
+          <NavLink to={"/dashboard/paymenthistory"} className="flex items-center gap-2 text-lg font-bold"><RiWallet2Fill></RiWallet2Fill> Payment History</NavLink>
 
-          <Link to={"/mycart"} className="flex items-center gap-2 text-lg font-bold"><RiShoppingCartFill></RiShoppingCartFill> My Cart</Link>
-          <Link to={"/addreview"} className="flex items-center gap-2 text-lg font-bold"><RiStarFill></RiStarFill> Add Review</Link>
-          <Link to={"/mybooking"} className="flex items-center gap-2 text-lg font-bold"><RiCalendarCheckLine></RiCalendarCheckLine> My Booking</Link>
+          <NavLink to={"/dashboard/mycart"} className="flex items-center gap-2 text-lg font-bold"><RiShoppingCartFill></RiShoppingCartFill> My Cart</NavLink>
+          <NavLink to={"/dashboard/addreview"} className="flex items-center gap-2 text-lg font-bold"><RiStarFill></RiStarFill> Add Review</NavLink>
+          <NavLink to={"/dashboard/mybooking"} className="flex items-center gap-2 text-lg font-bold"><RiCalendarCheckLine></RiCalendarCheckLine> My Booking</NavLink>
 
-    <hr />
+          <hr />
 
-          <Link to={"/home"} className="flex items-center gap-2 text-lg font-bold"><RiHome2Fill></RiHome2Fill>Home</Link>
+          <NavLink to={"/home"} className="flex items-center gap-2 text-lg font-bold"><RiHome2Fill></RiHome2Fill>Home</NavLink>
 
-          <Link to={"/menu"} className="flex items-center gap-2 text-lg font-bold"><RiMenu2Fill></RiMenu2Fill>menu</Link>
+          <NavLink to={"/menu"} className="flex items-center gap-2 text-lg font-bold"><RiMenu2Fill></RiMenu2Fill>menu</NavLink>
 
-          <Link to={"/menu"} className="flex items-center gap-2 text-lg font-bold"><RiShoppingCartFill></RiShoppingCartFill>menu</Link>
+          <NavLink to={"/menu"} className="flex items-center gap-2 text-lg font-bold"><RiShoppingCartFill></RiShoppingCartFill>menu</NavLink>
 
-          <Link to={"/Shop"} className="flex items-center gap-2 text-lg font-bold"><RiShoppingCartFill></RiShoppingCartFill>Shop</Link>
+          <NavLink to={"/Shop"} className="flex items-center gap-2 text-lg font-bold"><RiShoppingCartFill></RiShoppingCartFill>Shop</NavLink>
 
-          <Link to={"/Shop"} className="flex items-center gap-2 text-lg font-bold"><RiShoppingBag2Fill></RiShoppingBag2Fill>Shop</Link>
-          
-          <Link to={"/Contact"} className="flex items-center gap-2 text-lg font-bold"><RiMailFill></RiMailFill>Contact</Link>
-          
+          <NavLink to={"/Shop"} className="flex items-center gap-2 text-lg font-bold"><RiShoppingBag2Fill></RiShoppingBag2Fill>Shop</NavLink>
+
+          <NavLink to={"/Contact"} className="flex items-center gap-2 text-lg font-bold"><RiMailFill></RiMailFill>Contact</NavLink>
+
         </ul>
 
       </div>

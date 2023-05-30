@@ -5,7 +5,7 @@ import {
   loadCaptchaEnginge,
   validateCaptcha,
 } from "react-simple-captcha";
-import { AuthContext } from "../../authProvider/AuthProvider";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 
 
