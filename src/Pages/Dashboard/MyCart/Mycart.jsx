@@ -46,7 +46,7 @@ const Mycart = () => {
         <h1 className="text-6xl py-10">My Cart Page</h1>
         <div className="flex justify-between px-4 border-4 border-cyan-900 py-6 rounded-md items-center">
           <span className="text-4xl">Total Item : {cart?.length}</span>
-          <span className="text-4xl">Total Price : {total}</span>
+          <span className="text-4xl">Total Price : ${total}</span>
           <button className="btn bg-cyan-900">Pay</button>
         </div>
       </div>
