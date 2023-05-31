@@ -53,7 +53,7 @@ const Mycart = () => {
       <div className="overflow-y-auto w-full border-4 border-cyan-900 rounded-md">
         <table className="table w-full">
           {/* head */}
-          <thead className="bg-cyan-900 text-white">
+          <thead className="">
             <tr>
               <th>#</th>
               <th>Name</th>

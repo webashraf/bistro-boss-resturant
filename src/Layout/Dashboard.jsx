@@ -1,15 +1,18 @@
 import { Helmet } from "react-helmet";
-import { RiCalendar2Fill, RiCalendarCheckLine, RiHome2Fill, RiHome2Line, RiMailFill, RiMenu2Fill, RiShoppingBag2Fill, RiShoppingCartFill, RiStarFill, RiWallet2Fill } from 'react-icons/ri';
+import { RiCalendar2Fill, RiCalendarCheckLine, RiHome2Fill, RiHome2Line, RiMailFill, RiMenu2Fill, RiShoppingBag2Fill, RiShoppingCartFill, RiStarFill, RiUser2Fill, RiWallet2Fill } from 'react-icons/ri';
 import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
-  
-  
+
+  const isUser = true;
+
+
+
 
   return (
     <div className="drawer drawer-mobile w-full">
-       <Helmet>
-         <meta charSet="utf-8" />
+      <Helmet>
+        <meta charSet="utf-8" />
         <title>BISTRO BOSS | Dashboard</title>
       </Helmet>
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle " />
@@ -28,15 +31,31 @@ const Dashboard = () => {
             <h2 className="text-5xl">Bistro Boss</h2>
             <p className="tracking-[1rem]">resturant</p>
           </div>
-          <NavLink to={"/dashboard/home"} className="flex items-center gap-2 text-lg font-bold"><RiHome2Line></RiHome2Line>Home</NavLink>
+          {
+            isUser ?
+              <>
+                <NavLink to={"/dashboard/home"} className="flex items-center gap-2 text-lg font-bold"><RiHome2Line></RiHome2Line>Admin Home</NavLink>
 
-          <NavLink to={"/dashboard/reservation"} className="flex items-center gap-2 text-lg font-bold"><RiCalendar2Fill></RiCalendar2Fill>Reservation</NavLink>
+                <NavLink to={"/dashboard/reservation"} className="flex items-center gap-2 text-lg font-bold"><RiCalendar2Fill></RiCalendar2Fill>Reservation</NavLink>
 
-          <NavLink to={"/dashboard/paymenthistory"} className="flex items-center gap-2 text-lg font-bold"><RiWallet2Fill></RiWallet2Fill> Payment History</NavLink>
+                <NavLink to={"/dashboard/paymenthistory"} className="flex items-center gap-2 text-lg font-bold"><RiWallet2Fill></RiWallet2Fill> Payment History</NavLink>
 
-          <NavLink to={"/dashboard/mycart"} className="flex items-center gap-2 text-lg font-bold"><RiShoppingCartFill></RiShoppingCartFill> My Cart</NavLink>
-          <NavLink to={"/dashboard/addreview"} className="flex items-center gap-2 text-lg font-bold"><RiStarFill></RiStarFill> Add Review</NavLink>
-          <NavLink to={"/dashboard/mybooking"} className="flex items-center gap-2 text-lg font-bold"><RiCalendarCheckLine></RiCalendarCheckLine> My Booking</NavLink>
+                <NavLink to={"/dashboard/mycart"} className="flex items-center gap-2 text-lg font-bold"><RiShoppingCartFill></RiShoppingCartFill> My Cart</NavLink>
+                <NavLink to={"/dashboard/addreview"} className="flex items-center gap-2 text-lg font-bold"><RiStarFill></RiStarFill> Add Review</NavLink>
+                <NavLink to={"/dashboard/allUsers"} className="flex items-center gap-2 text-lg font-bold"><RiUser2Fill></RiUser2Fill>All User</NavLink>
+              </> :
+              <>
+                <NavLink to={"/dashboard/home"} className="flex items-center gap-2 text-lg font-bold"><RiHome2Line></RiHome2Line>User Home</NavLink>
+
+                <NavLink to={"/dashboard/reservation"} className="flex items-center gap-2 text-lg font-bold"><RiCalendar2Fill></RiCalendar2Fill>Reservation</NavLink>
+
+                <NavLink to={"/dashboard/paymenthistory"} className="flex items-center gap-2 text-lg font-bold"><RiWallet2Fill></RiWallet2Fill> Payment History</NavLink>
+
+                <NavLink to={"/dashboard/mycart"} className="flex items-center gap-2 text-lg font-bold"><RiShoppingCartFill></RiShoppingCartFill> My Cart</NavLink>
+                <NavLink to={"/dashboard/addreview"} className="flex items-center gap-2 text-lg font-bold"><RiStarFill></RiStarFill> Add Review</NavLink>
+                <NavLink to={"/dashboard/mybooking"} className="flex items-center gap-2 text-lg font-bold"><RiCalendarCheckLine></RiCalendarCheckLine> My Booking</NavLink>
+              </>
+          }
 
           <hr />
 

@@ -8,6 +8,7 @@ import {
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import SocialSignIn from "../../Shared/SocialSignIn/SocialSignIn";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 
 
@@ -37,8 +38,8 @@ const SignUp = () => {
           .then(result => {
             console.log(result)
             logOut()
-            .then(result => console.log(result))
-            .then(data => console.log(data))
+              .then(result => console.log(result))
+              .then(data => console.log(data))
           })
           .catch(error => console.log(error))
 
@@ -86,6 +87,10 @@ const SignUp = () => {
   };
   return (
     <div className="hero min-h-screen bg-base-200">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>BISTRO BOSS | Sign Up</title>
+      </Helmet>
       <div className="hero-content flex-col lg:flex-row">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Register now!</h1>
