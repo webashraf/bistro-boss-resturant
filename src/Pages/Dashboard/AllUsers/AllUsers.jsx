@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { FaTrashAlt, FaUser, FaUserShield } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const AllUsers = () => {
     const { data: users = [], refetch } = useQuery(['users'], async () => {
@@ -11,12 +12,57 @@ const AllUsers = () => {
 
 
     const handleUserRole = id => {
-        console.log(id);
-        fetch(`http://localhost:5000/user/admin/${id}`, {
-            method: 'PATCH'
+        // console.log(id);
+
+
+
+
+        let timerInterval
+        Swal.fire({
+            title: 'Auto close alert!',
+            html: 'Process to make user  <b></b> admin.',
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading()
+                const b = Swal.getHtmlContainer().querySelector('b')
+                timerInterval = setInterval(() => {
+                    b.textContent = Swal.getTimerLeft()
+                }, 100)
+            },
+            willClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+
+                fetch(`http://localhost:5000/user/admin/${id}`, {
+                    method: 'PATCH'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.acknowledged) {
+                            refetch();
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Your work has been saved',
+                                showConfirmButton: false,
+                                timer: 1500
+                              })
+                            
+                        }
+                    })
+
+            }
         })
-        .then(res => res.json())
-        .then(data => console.log(data))
+
+
+
+
+
     }
 
 
@@ -57,9 +103,9 @@ const AllUsers = () => {
                                     <div className="font-bold">{user.name}</div>
                                 </td>
                                 <td className="">${user.email}</td>
-                                <td className="">{!user.role ? <button onClick={() => handleUserRole(user._id)} className='btn btn-lg btn-outline'><FaUser className='text-cyan-700'></FaUser></button> : 
-                                <button className='btn btn-lg btn-outline'>
-                                    <FaUserShield className='text-cyan-900'></FaUserShield>
+                                <td className="">{!user.role ? <button onClick={() => handleUserRole(user._id)} className='btn btn-lg btn-outline'><FaUser className='text-cyan-700'></FaUser></button> :
+                                    <button className='btn btn-lg btn-outline'>
+                                        <FaUserShield className='text-cyan-900'></FaUserShield>
                                     </button>}</td>
                                 <td className="flex justify-end">
                                     <button
