@@ -5,8 +5,10 @@ import Swal from "sweetalert2";
 
 const Mycart = () => {
   const [cart, refetch] = useCart();
-  const total = cart.reduce((prev, current) => prev + current.price, 0);
-
+  let total = 0;
+  if (cart) {
+    total = cart.reduce((prev, current) => prev + current.price, 0);
+  }
 
 
   const handleDeleteItem = (item) => {
@@ -29,7 +31,7 @@ const Mycart = () => {
         })
           .then(res => res.json())
           .then((data) => {
-              refetch();
+            refetch();
             console.log(data);
           });
       }

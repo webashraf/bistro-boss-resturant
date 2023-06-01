@@ -4,7 +4,7 @@ import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
 
-  const isUser = true;
+  const isAdmin = true;
 
 
 
@@ -32,7 +32,7 @@ const Dashboard = () => {
             <p className="tracking-[1rem]">resturant</p>
           </div>
           {
-            isUser ?
+            isAdmin ?
               <>
                 <NavLink to={"/dashboard/home"} className="flex items-center gap-2 text-lg font-bold"><RiHome2Line></RiHome2Line>Admin Home</NavLink>
 

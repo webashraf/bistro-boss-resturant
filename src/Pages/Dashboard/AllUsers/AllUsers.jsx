@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
 import { Helmet } from 'react-helmet';
 import { FaTrashAlt, FaUser, FaUserShield } from 'react-icons/fa';
 import Swal from 'sweetalert2';
@@ -13,9 +12,6 @@ const AllUsers = () => {
 
     const handleUserRole = id => {
         // console.log(id);
-
-
-
 
         let timerInterval
         Swal.fire({
@@ -51,8 +47,8 @@ const AllUsers = () => {
                                 title: 'Your work has been saved',
                                 showConfirmButton: false,
                                 timer: 1500
-                              })
-                            
+                            })
+
                         }
                     })
 
@@ -60,14 +56,11 @@ const AllUsers = () => {
         })
 
 
-
-
-
     }
 
 
     const handleDeleteUser = userId => {
-        console.log(userId);
+        
     }
 
 
@@ -79,9 +72,6 @@ const AllUsers = () => {
                 <title>BISTRO BOSS | All Users</title>
             </Helmet>
             {users.length}
-
-
-
 
             <div className="overflow-y-auto w-full border-4 border-cyan-900 rounded-md">
                 <table className="table w-full">
