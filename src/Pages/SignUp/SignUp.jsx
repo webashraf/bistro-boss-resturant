@@ -1,14 +1,22 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   LoadCanvasTemplate,
   loadCaptchaEnginge,
   validateCaptcha,
 } from "react-simple-captcha";
-import { AuthContext } from "../../authProvider/AuthProvider";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import SocialSignIn from "../../Shared/SocialSignIn/SocialSignIn";
+import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
+
+
+
+
 
 const SignUp = () => {
-  const { createUserEmailAndPass, updateUserProfile } = useContext(AuthContext);
+  const { createUserEmailAndPass, updateUserProfile, user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const captchaRef = useRef(null);
   const [loginBtn, setLoginBtn] = useState(true);
@@ -18,22 +26,53 @@ const SignUp = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+
+
+  // Handle form //
   const onSubmit = (data) => {
     console.log(data);
     createUserEmailAndPass(data.email, data.password)
       .then((result) => {
         console.log(result);
-
         updateUserProfile(data.name, data.photo_url)
-        .then(result => console.log(result))
-        .catch(error => console.log(error))
+          .then(result => {
+            console.log(result)
+            logOut()
+              .then(result => console.log(result))
+              .then(data => console.log(data))
+          })
+          .catch(error => console.log(error))
+
+        const user = { name: data.name, email: data.email }
+        fetch(`http://localhost:5000/user`, {
+          method: 'POST',
+          headers: {
+            "Content-type": "application/json"
+          },
+          body: JSON.stringify(user)
+        })
+          .then(res => res.json())
+          .then(data => console.log(data))
+
+
+
+
       })
       .catch((error) => console.log(error));
   };
 
+
+
   useEffect(() => {
     loadCaptchaEnginge(4);
   }, []);
+
+
+  useEffect(() => {
+    user && navigate('/')
+
+  }, [user])
+
   const handleCaptcha = () => {
     const value = captchaRef.current.value;
     if (validateCaptcha(value)) {
@@ -48,6 +87,10 @@ const SignUp = () => {
   };
   return (
     <div className="hero min-h-screen bg-base-200">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>BISTRO BOSS | Sign Up</title>
+      </Helmet>
       <div className="hero-content flex-col lg:flex-row">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Register now!</h1>
@@ -162,10 +205,10 @@ const SignUp = () => {
                 value="Submit"
               />
             </div>
-            <div className="form-control mt-6">
-              <button className="btn">Google</button>
-            </div>
           </form>
+          <div className="form-control mt-6">
+            <SocialSignIn></SocialSignIn>
+          </div>
         </div>
       </div>
     </div>

@@ -6,6 +6,7 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import SocialSignIn from "../../Shared/SocialSignIn/SocialSignIn";
 
 
 
@@ -32,9 +33,13 @@ const Login = () => {
       .then((result) => console.log(result))
       .catch((error) => console.log(error));
   };
+
+
   useEffect(() => {
     loadCaptchaEnginge(4);
   }, []);
+
+
   const handleCaptcha = () => {
     const value = captchaRef.current.value;
     if (validateCaptcha(value)) {
@@ -47,12 +52,9 @@ const Login = () => {
     }
     console.log(loginBtn);
   };
-  const signUpWithGoogle = () => {
-    createUserWithGoogle()
-      .then((result) => console.log(result))
-      .catch((error) => console.log(error));
-  };
-  useEffect(()=> {
+
+
+  useEffect(() => {
     user && navigate(from)
 
   }, [user])
@@ -129,9 +131,7 @@ const Login = () => {
               </p>
             </div>
             <div className="form-control mt-6">
-              <button onClick={signUpWithGoogle} className="btn">
-                Google
-              </button>
+              <SocialSignIn></SocialSignIn>
             </div>
           </form>
         </div>

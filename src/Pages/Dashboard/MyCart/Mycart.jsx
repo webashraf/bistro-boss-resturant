@@ -5,8 +5,10 @@ import Swal from "sweetalert2";
 
 const Mycart = () => {
   const [cart, refetch] = useCart();
-  const total = cart.reduce((prev, current) => prev + current.price, 0);
-
+  let total = 0;
+  if (cart) {
+    total = cart.reduce((prev, current) => prev + current.price, 0);
+  }
 
 
   const handleDeleteItem = (item) => {
@@ -29,7 +31,7 @@ const Mycart = () => {
         })
           .then(res => res.json())
           .then((data) => {
-              refetch();
+            refetch();
             console.log(data);
           });
       }
@@ -46,14 +48,14 @@ const Mycart = () => {
         <h1 className="text-6xl py-10">My Cart Page</h1>
         <div className="flex justify-between px-4 border-4 border-cyan-900 py-6 rounded-md items-center">
           <span className="text-4xl">Total Item : {cart?.length}</span>
-          <span className="text-4xl">Total Price : {total}</span>
+          <span className="text-4xl">Total Price : ${total}</span>
           <button className="btn bg-cyan-900">Pay</button>
         </div>
       </div>
       <div className="overflow-y-auto w-full border-4 border-cyan-900 rounded-md">
         <table className="table w-full">
           {/* head */}
-          <thead className="bg-cyan-900 text-white">
+          <thead className="">
             <tr>
               <th>#</th>
               <th>Name</th>

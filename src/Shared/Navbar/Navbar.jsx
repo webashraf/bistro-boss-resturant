@@ -17,7 +17,7 @@ const Navbar = () => {
       <Link to={"/dashboard/mycart"} className="flex gap-2">
         <RiShoppingCartFill></RiShoppingCartFill>
         
-        <div className="badge badge-secondary">{cart?.length}</div>
+        <div className="badge badge-secondary">{cart?.length || 0}</div>
       </Link>
       <Link to={"/dashboard"}>Dashboard</Link>
     </>
