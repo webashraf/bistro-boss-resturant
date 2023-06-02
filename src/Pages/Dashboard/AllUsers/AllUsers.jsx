@@ -2,11 +2,13 @@ import { useQuery } from '@tanstack/react-query';
 import { Helmet } from 'react-helmet';
 import { FaTrashAlt, FaUser, FaUserShield } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const AllUsers = () => {
+    const [axiosSecure] = useAxiosSecure();
     const { data: users = [], refetch } = useQuery(['users'], async () => {
-        const res = await fetch(`http://localhost:5000/users`);
-        return res.json();
+        const res = await axiosSecure.get(`/users`);
+        return res.data;
     })
 
 
@@ -92,7 +94,7 @@ const AllUsers = () => {
                                 <td>
                                     <div className="font-bold">{user.name}</div>
                                 </td>
-                                <td className="">${user.email}</td>
+                                <td className="">{user.email}</td>
                                 <td className="">{!user.role ? <button onClick={() => handleUserRole(user._id)} className='btn btn-lg btn-outline'><FaUser className='text-cyan-700'></FaUser></button> :
                                     <button className='btn btn-lg btn-outline'>
                                         <FaUserShield className='text-cyan-900'></FaUserShield>

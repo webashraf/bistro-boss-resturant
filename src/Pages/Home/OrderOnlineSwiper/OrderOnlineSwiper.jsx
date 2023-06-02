@@ -24,7 +24,7 @@ const OrderOnlineSwiper = () => {
       <Swiper
         slidesPerView={4}
         spaceBetween={30}
-        centeredSlides={true}
+        // centeredSlides={true}
         pagination={{
           clickable: true,
         }}

@@ -1,10 +1,13 @@
 import { Helmet } from "react-helmet";
-import { RiCalendar2Fill, RiCalendarCheckLine, RiHome2Fill, RiHome2Line, RiMailFill, RiMenu2Fill, RiShoppingBag2Fill, RiShoppingCartFill, RiStarFill, RiUser2Fill, RiWallet2Fill } from 'react-icons/ri';
+import { RiAddBoxFill, RiCalendar2Fill, RiCalendarCheckLine, RiEdit2Fill, RiHome2Fill, RiHome2Line, RiMailFill, RiMenu2Fill, RiShoppingBag2Fill, RiShoppingCartFill, RiStarFill, RiUser2Fill, RiWallet2Fill } from 'react-icons/ri';
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
 
-  const isAdmin = true;
+  // const isAdmin = true;
+
+  const [isAdmin] = useAdmin()
 
 
 
@@ -36,7 +39,9 @@ const Dashboard = () => {
               <>
                 <NavLink to={"/dashboard/home"} className="flex items-center gap-2 text-lg font-bold"><RiHome2Line></RiHome2Line>Admin Home</NavLink>
 
-                <NavLink to={"/dashboard/reservation"} className="flex items-center gap-2 text-lg font-bold"><RiCalendar2Fill></RiCalendar2Fill>Reservation</NavLink>
+                <NavLink to={"/dashboard/additem"} className="flex items-center gap-2 text-lg font-bold"><RiAddBoxFill></RiAddBoxFill>Add Item</NavLink>
+
+                <NavLink to={"/dashboard/manageItems"} className="flex items-center gap-2 text-lg font-bold"><RiEdit2Fill></RiEdit2Fill>Manage Items</NavLink>
 
                 <NavLink to={"/dashboard/paymenthistory"} className="flex items-center gap-2 text-lg font-bold"><RiWallet2Fill></RiWallet2Fill> Payment History</NavLink>
 
@@ -47,6 +52,7 @@ const Dashboard = () => {
               <>
                 <NavLink to={"/dashboard/home"} className="flex items-center gap-2 text-lg font-bold"><RiHome2Line></RiHome2Line>User Home</NavLink>
 
+                <NavLink to={"/dashboard/additem"} className="flex items-center gap-2 text-lg font-bold"><RiAddBoxFill></RiAddBoxFill>Add Item</NavLink>
                 <NavLink to={"/dashboard/reservation"} className="flex items-center gap-2 text-lg font-bold"><RiCalendar2Fill></RiCalendar2Fill>Reservation</NavLink>
 
                 <NavLink to={"/dashboard/paymenthistory"} className="flex items-center gap-2 text-lg font-bold"><RiWallet2Fill></RiWallet2Fill> Payment History</NavLink>
@@ -59,7 +65,7 @@ const Dashboard = () => {
 
           <hr />
 
-          <NavLink to={"/home"} className="flex items-center gap-2 text-lg font-bold"><RiHome2Fill></RiHome2Fill>Home</NavLink>
+          <NavLink to={"/"} className="flex items-center gap-2 text-lg font-bold"><RiHome2Fill></RiHome2Fill>Home</NavLink>
 
           <NavLink to={"/menu"} className="flex items-center gap-2 text-lg font-bold"><RiMenu2Fill></RiMenu2Fill>menu</NavLink>
 

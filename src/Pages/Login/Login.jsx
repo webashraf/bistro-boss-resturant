@@ -15,7 +15,6 @@ const Login = () => {
   const captchaRef = useRef(null);
   const [loginBtn, setLoginBtn] = useState(true);
   const location = useLocation();
-  console.log(location);
   const from = location?.state?.from?.pathname || "/"
   const navigate = useNavigate();
 
@@ -27,7 +26,6 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
 
     loginWithEmailPass(email, password)
       .then((result) => console.log(result))
@@ -44,20 +42,16 @@ const Login = () => {
     const value = captchaRef.current.value;
     if (validateCaptcha(value)) {
       setLoginBtn(false);
-      // console.log(loginBtn);
-      console.log("Matched");
     } else {
       setLoginBtn(true);
-      console.log("not matched");
     }
-    console.log(loginBtn);
   };
 
 
   useEffect(() => {
     user && navigate(from)
 
-  }, [user])
+  }, [user, from,navigate])
 
   return (
     <div className="hero min-h-screen bg-base-200">
