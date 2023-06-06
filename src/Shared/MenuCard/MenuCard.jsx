@@ -20,7 +20,7 @@ const MenuCard = ({ menu, loading }) => {
         console.log(user);
         if (user) {
             console.log("add to cart", orderItems);
-            fetch(`http://localhost:5000/carts`, {
+            fetch(`https://bistro-boss-server-mocha.vercel.app/carts`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(orderItems)

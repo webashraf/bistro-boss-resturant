@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet";
 import { FaTrashAlt } from "react-icons/fa";
-import useCart from "../../../hooks/useCart";
 import Swal from "sweetalert2";
+import useCart from "../../../hooks/useCart";
 
 const Mycart = () => {
   const [cart, refetch] = useCart();
@@ -25,8 +25,8 @@ const Mycart = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(item._id);
-        // http://localhost:5000/carts/hjjhtjjytuj
-        fetch(`http://localhost:5000/carts/${item._id}`, {
+        // https://bistro-boss-server-mocha.vercel.app/carts/hjjhtjjytuj
+        fetch(`https://bistro-boss-server-mocha.vercel.app/carts/${item._id}`, {
           method: "DELETE",
         })
           .then(res => res.json())

@@ -3,9 +3,9 @@ import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import {
-  LoadCanvasTemplate,
-  loadCaptchaEnginge,
-  validateCaptcha,
+    LoadCanvasTemplate,
+    loadCaptchaEnginge,
+    validateCaptcha,
 } from "react-simple-captcha";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import SocialSignIn from "../../Shared/SocialSignIn/SocialSignIn";
@@ -44,7 +44,7 @@ const SignUp = () => {
           .catch(error => console.log(error))
 
         const user = { name: data.name, email: data.email }
-        fetch(`http://localhost:5000/user`, {
+        fetch(`https://bistro-boss-server-mocha.vercel.app/user`, {
           method: 'POST',
           headers: {
             "Content-type": "application/json"

@@ -35,7 +35,7 @@ const AllUsers = () => {
             /* Read more about handling dismissals below */
             if (result.dismiss === Swal.DismissReason.timer) {
 
-                fetch(`http://localhost:5000/user/admin/${id}`, {
+                fetch(`https://bistro-boss-server-mocha.vercel.app/user/admin/${id}`, {
                     method: 'PATCH'
                 })
                     .then(res => res.json())

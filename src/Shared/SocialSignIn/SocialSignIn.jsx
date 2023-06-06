@@ -1,5 +1,4 @@
-import React from 'react';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const SocialSignIn = () => {
@@ -9,7 +8,7 @@ const SocialSignIn = () => {
           .then((result) => {
             const logedInUser = result.user;
             const user = {name: logedInUser.displayName, email: logedInUser.email}
-            fetch(`http://localhost:5000/user`, {
+            fetch(`https://bistro-boss-server-mocha.vercel.app/user`, {
               method: 'POST',
               headers:{
                 "Content-type" : "application/json"

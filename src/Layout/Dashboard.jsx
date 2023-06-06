@@ -37,7 +37,7 @@ const Dashboard = () => {
           {
             isAdmin ?
               <>
-                <NavLink to={"/dashboard/home"} className="flex items-center gap-2 text-lg font-bold"><RiHome2Line></RiHome2Line>Admin Home</NavLink>
+                <NavLink to={"/dashboard/admin"} className="flex items-center gap-2 text-lg font-bold"><RiHome2Line></RiHome2Line>Admin Home</NavLink>
 
                 <NavLink to={"/dashboard/additem"} className="flex items-center gap-2 text-lg font-bold"><RiAddBoxFill></RiAddBoxFill>Add Item</NavLink>
 
@@ -50,12 +50,12 @@ const Dashboard = () => {
                 <NavLink to={"/dashboard/allUsers"} className="flex items-center gap-2 text-lg font-bold"><RiUser2Fill></RiUser2Fill>All User</NavLink>
               </> :
               <>
-                <NavLink to={"/dashboard/home"} className="flex items-center gap-2 text-lg font-bold"><RiHome2Line></RiHome2Line>User Home</NavLink>
+                <NavLink to={"/dashboard/user"} className="flex items-center gap-2 text-lg font-bold"><RiHome2Line></RiHome2Line>User Home</NavLink>
 
-                <NavLink to={"/dashboard/additem"} className="flex items-center gap-2 text-lg font-bold"><RiAddBoxFill></RiAddBoxFill>Add Item</NavLink>
+                <NavLink to={"/dashboard/fdg"} className="flex items-center gap-2 text-lg font-bold"><RiAddBoxFill></RiAddBoxFill>Add Item</NavLink>
                 <NavLink to={"/dashboard/reservation"} className="flex items-center gap-2 text-lg font-bold"><RiCalendar2Fill></RiCalendar2Fill>Reservation</NavLink>
 
-                <NavLink to={"/dashboard/paymenthistory"} className="flex items-center gap-2 text-lg font-bold"><RiWallet2Fill></RiWallet2Fill> Payment History</NavLink>
+                <NavLink to={"/dashboard/payment"} className="flex items-center gap-2 text-lg font-bold"><RiWallet2Fill></RiWallet2Fill> Payment History</NavLink>
 
                 <NavLink to={"/dashboard/mycart"} className="flex items-center gap-2 text-lg font-bold"><RiShoppingCartFill></RiShoppingCartFill> My Cart</NavLink>
                 <NavLink to={"/dashboard/addreview"} className="flex items-center gap-2 text-lg font-bold"><RiStarFill></RiStarFill> Add Review</NavLink>

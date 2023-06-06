@@ -3,14 +3,15 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "./useAuth";
 
+  // Create axios instance with base URL
+  const axiosSecure = axios.create({
+    baseURL: "https://bistro-boss-server-mocha.vercel.app",
+  });
+
 const useAxiosSecure = () => {
   const navigate = useNavigate();
   const { logOut } = useAuth();
 
-  // Create axios instance with base URL
-  const axiosSecure = axios.create({
-    baseURL: "http://localhost:5000",
-  });
 
   useEffect(() => {
     // Add a request interceptor
@@ -41,7 +42,6 @@ const useAxiosSecure = () => {
           (error.response.status === 401 || error.response.status === 403)
         ) {
           // Log out the user and redirect to login page
-        //   //   logOutAndRedirect();
         //   Call the logout method from AuthContext
           await logOut();
 
@@ -52,14 +52,8 @@ const useAxiosSecure = () => {
       }
     );
 
-    // const logOutAndRedirect = async () => {
-    //   // Call the logout method from AuthContext
-    //   await logOut();
 
-    //   // Redirect the user to the login page
-    //   navigate('/login');
-    // };
-  }, [navigate, logOut, axiosSecure]);
+  }, [navigate, logOut]);
 
   return [axiosSecure];
 };

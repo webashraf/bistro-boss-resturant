@@ -3,11 +3,13 @@ import { RiShoppingCartFill } from 'react-icons/ri';
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import useCart from "../../hooks/useCart";
+import useAdmin from "../../hooks/useAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   // console.log(user);
   const [cart] = useCart()
+  const [isAdmin] = useAdmin();
 
   const navMenu = (
     <>
@@ -19,7 +21,7 @@ const Navbar = () => {
         
         <div className="badge badge-secondary">{cart?.length || 0}</div>
       </Link>
-      <Link to={"/dashboard"}>Dashboard</Link>
+      <Link to={ isAdmin ? "/dashboard/admin" : '/dashboard/user'}>Dashboard</Link>
     </>
   );
   // console.log(user);
